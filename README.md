@@ -88,7 +88,7 @@ npm install
 ### 3️⃣ Configure Environment Variables
 Create a .env file in the backend root:
 ```
-PORT=5000
+PORT=8000
 MONGO_URI=mongodb://localhost:27017/agentManagement
 JWT_SECRET=your_jwt_secret_key
 ```
