@@ -1,171 +1,167 @@
-🚀 Agent Management Backend
+# 🚀 Agent Management Backend
 
-A fully functional Node.js + Express.js backend service for managing agents, lists, and distributions with robust authentication, authorization, and file handling.
-Designed to be scalable, secure, and easy to extend for real-world applications.
+A fully functional **Node.js + Express.js** backend service for managing **agents, lists, and distributions** with robust **authentication, authorization, and file handling**.  
+Designed to be **scalable, secure, and easy to extend** for real-world applications.
 
-📌 Features
+---
 
-Authentication & Authorization
+## 📌 Features
 
-JWT-based authentication (jsonwebtoken)
+### 🔑 Authentication & Authorization
+- ✅ JWT-based authentication (`jsonwebtoken`)
+- ✅ Role-based access control (`requireAdmin` middleware)
+- ✅ Secure password hashing using `bcryptjs`
 
-Role-based access control (requireAdmin middleware)
+### 👥 Agent Management
+- Create, update, delete agents
+- Get agent stats and detailed profiles
 
-Secure password hashing using bcryptjs
+### 🗂️ List Management
+- Upload **CSV/Excel** files using `multer`
+- Distribute records across agents
+- Track item status updates
+- Dashboard analytics for uploads
 
-Agent Management
+### 📂 File Uploads & Parsing
+- CSV parsing with `papaparse`
+- Excel parsing with `xlsx`
+- File storage served via `/uploads`
 
-Create, update, delete agents
+### 🛢️ Database
+- MongoDB with `mongoose`
+- Centralized database connection utility
 
-Get agent stats and detailed profiles
+### ⚠️ Error Handling
+- Centralized error middleware with proper status codes
+- Handles **validation** and **cast errors** gracefully
 
-List Management
+### 🧑‍💻 Developer Experience
+- Hot reload with `nodemon`
+- `.env` support with `dotenv`
+- CORS enabled for frontend integration
 
-Upload CSV/Excel files using multer
+---
 
-Distribute records across agents
+## 🛠️ Tech Stack
 
-Track item status updates
+- **Runtime:** Node.js (v22+)  
+- **Framework:** Express.js (v5.1.0)  
+- **Database:** MongoDB (via Mongoose ORM)  
+- **Authentication:** JWT + bcrypt  
+- **File Uploads:** Multer, Papaparse, XLSX  
+- **Other:** UUID, Dotenv, CORS  
 
-Dashboard analytics for uploads
+---
 
-File Uploads & Parsing
+## 📂 Project Structure
 
-CSV parsing with papaparse
-
-Excel parsing with xlsx
-
-File storage served via /uploads
-
-Database
-
-MongoDB with mongoose
-
-Centralized database connection utility
-
-Error Handling
-
-Centralized error middleware with proper status codes
-
-Handles validation and cast errors gracefully
-
-Developer Experience
-
-.env support with dotenv
-
-CORS enabled for frontend integration
-
-🛠️ Tech Stack
-
-Runtime: Node.js (v22+)
-
-Framework: Express.js (v5.1.0)
-
-Database: MongoDB (via Mongoose ORM)
-
-Authentication: JWT + bcrypt
-
-File Uploads: Multer, Papaparse, XLSX
-
-Other: UUID, Dotenv, CORS
-
-📂 Project Structure
 backend/
 │── config/
-│   ├── database.js       # MongoDB connection
-│   ├── multer.js         # Multer setup for file uploads
+│ ├── database.js # MongoDB connection
+│ ├── multer.js # Multer setup for file uploads
 │
-│── controllers/          # Route controllers (business logic)
-│── middleware/           # Authentication & authorization middleware
-│── routes/               # API route definitions
-│── uploads/              # Uploaded CSV/Excel files
-│── server.js             # Application entry point
+│── controllers/ # Route controllers (business logic)
+│── middleware/ # Authentication & authorization middleware
+│── routes/ # API route definitions
+│── uploads/ # Uploaded CSV/Excel files
+│── server.js # Application entry point
 │── package.json
-│── .env
+│── .env.example
 
-⚙️ Installation & Setup
-1️⃣ Clone the repository
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the repository
+```bash
 git clone https://github.com/Mukeshpandey0286/agent-management-backend.git
 cd agent-management-backend/backend
+```
+### 2️⃣ Install dependencies
 
-2️⃣ Install dependencies
+```bash
 npm install
+```
 
-3️⃣ Configure Environment Variables
-
-Create a .env file in the backend root and add:
-
+###3️⃣ Configure Environment Variables
+Create a .env file in the backend root:
+```
 PORT=5000
-MONGO_URI=mongodb://localhost:27017/example
+MONGO_URI=mongodb://localhost:27017/agentManagement
 JWT_SECRET=your_jwt_secret_key
+```
 
-4️⃣ Run the server
+###4️⃣ Run the server
+```bash
 # Development (with hot reload)
 npm run dev
 
 # Production
 npm start
+```
 
-🔑 API Endpoints
-Auth Routes (/api/auth)
+## 🔑 API Endpoints
 
-POST /login → Admin login
+### 🔐 Auth Routes (/api/auth)
 
-POST /logout → Logout
+1. POST /login → Admin login
 
-GET /profile → Get logged-in admin profile
+2. POST /logout → Logout
 
-GET /verify → Verify token
+3. GET /profile → Get logged-in admin profile
 
-POST /create-admin → Create first admin
+4. GET /verify → Verify token
 
-Agent Routes (/api/agents)
+5. POST /create-admin → Create first admin
 
-GET / → Get all agents (with search, pagination)
+### 👥 Agent Routes (/api/agents)
 
-GET /stats → Get agent statistics
+1. GET / → Get all agents (with search, pagination)
 
-GET /:id → Get agent details
+2. GET /stats → Get agent statistics
 
-POST / → Create agent
+3. GET /:id → Get agent details
 
-PUT /:id → Update agent
+4. POST / → Create agent
 
-DELETE /:id → Delete agent
+5. PUT /:id → Update agent
 
-List Routes (/api/lists)
+6. DELETE /:id → Delete agent
 
-POST /upload → Upload & distribute CSV/Excel
+### 📂 List Routes (/api/lists)
 
-GET /dashboard-stats → Get dashboard analytics
+1. POST /upload → Upload & distribute CSV/Excel
 
-GET /agent/:agentId → Get agent-specific lists
+2. GET /dashboard-stats → Get dashboard analytics
 
-GET /upload/:uploadId → Get distributions from an upload
+3. GET /agent/:agentId → Get agent-specific lists
 
-GET /:listId → Get a specific list
+4. GET /upload/:uploadId → Get distributions from an upload
 
-PUT /:listId/items/:itemId → Update item status
+5. GET /:listId → Get a specific list
 
-DELETE /:listId → Delete a list
+6. PUT /:listId/items/:itemId → Update item status
 
-📊 Health Check
+8. DELETE /:listId → Delete a list
 
-API is equipped with a health check endpoint:
+### 📊 Health Check
 
+The API provides a health check route:
+```
 GET /api/health
-
-
-Example Response:
-
+```
+### Example Response:
+```
 {
   "success": true,
   "message": "Agent Management API is running",
   "timestamp": "2025-08-23T06:45:32.910Z"
 }
+```
 
-🧪 Error Handling
-
+## 🧪 Error Handling
+```
 Validation Errors (400): Missing/invalid fields
 
 Cast Errors (400): Invalid MongoDB ObjectId
@@ -176,32 +172,23 @@ Not Found (404): Invalid route
 
 Server Errors (500): Internal issues
 
-📌 Interviewer Highlights
+```
 
-Scalable Architecture: Follows modular MVC structure with separation of concerns.
+## 🚀 Future Improvements
 
-Security Best Practices: JWT-based auth, password hashing, role-based middleware.
+1. Add Docker support for easy deployment
+2. Implement request validation with Joi or Zod
+3. Add rate-limiting & Helmet for security hardening
+4. Introduce testing with Jest & Supertest
+5. CI/CD pipeline setup with GitHub Actions
+   
+## 🤝 Contributing
 
-Production Ready: Error handling, file upload support, health checks.
+Pull requests are welcome!
+For significant changes, please open an issue first to discuss your ideas.
 
-Developer Friendly: Hot reload, .env support, clear project structure.
+##### ✨ With this backend, you get a secure, production-ready API foundation for any agent/list management system.
+Perfect as a starting point for enterprise dashboards, CRMs, or resource distribution platforms.
 
-Extendable: Easy to add new routes, models, or services without refactoring core logic.
 
-🚀 Future Improvements
-
-Add Docker support for easy deployment
-
-Implement request validation with Joi or Zod
-
-Add rate-limiting & helmet for security hardening
-
-Introduce unit/integration testing with Jest/Supertest
-
-CI/CD pipeline setup with GitHub Actions
-
-🤝 Contributing
-
-Pull requests are welcome! For significant changes, please open an issue first to discuss what you would like to change.
-
-✨ With this backend, you get a secure, production-ready API foundation for any agent/list management system. Perfect as a starting point for enterprise dashboards, CRMs, or resource distribution platforms.
+ 
