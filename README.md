@@ -54,7 +54,7 @@ Designed to be **scalable, secure, and easy to extend** for real-world applicati
 ---
 
 ## 📂 Project Structure
-
+```
 backend/
 │── config/
 │ ├── database.js # MongoDB connection
@@ -67,6 +67,7 @@ backend/
 │── server.js # Application entry point
 │── package.json
 │── .env.example
+```
 
 
 ---
@@ -84,7 +85,7 @@ cd agent-management-backend/backend
 npm install
 ```
 
-###3️⃣ Configure Environment Variables
+### 3️⃣ Configure Environment Variables
 Create a .env file in the backend root:
 ```
 PORT=5000
@@ -92,7 +93,7 @@ MONGO_URI=mongodb://localhost:27017/agentManagement
 JWT_SECRET=your_jwt_secret_key
 ```
 
-###4️⃣ Run the server
+### 4️⃣ Run the server
 ```bash
 # Development (with hot reload)
 npm run dev
